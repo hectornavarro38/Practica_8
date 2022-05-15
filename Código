@@ -1,0 +1,81 @@
+import numpy as np
+from matplotlib import pyplot as plt
+import cv2 #Opencv
+import math
+import skimage
+from skimage import io
+
+img = cv2.imread('flores.jpg')
+rimg = cv2.resize(img, (300,300))
+cv2.imshow('Imagen Original',rimg)
+
+imgCanny = cv2.Canny(img, 1500, 1500) #Entre mas bajo mas lineas
+
+
+#Canny
+
+img_g = cv2.cvtColor(rimg,cv2.COLOR_BGR2GRAY)
+img_b = cv2.Canny(img_g, 200, 200)
+cv2.imshow('Canny',img_b)
+
+#Laplace
+
+laplace = cv2.Laplacian(img_g, cv2.CV_64F)
+laplace = np.uint8(np.absolute(laplace))
+cv2.imshow("Laplaciano",laplace)
+
+#Sobel
+
+sobelX = cv2.Sobel(img_g,cv2.CV_64F,1,0)
+sobelY = cv2.Sobel(img_g,cv2.CV_64F,0,1)
+sobelX = np.uint8(np.absolute(sobelX))
+sobelY = np.uint8(np.absolute(sobelY))
+
+#SobelX
+
+cv2.imshow("SobelX",sobelX)
+
+#SobelY
+
+cv2.imshow("SobelY",sobelY)
+
+#Sobel Combined
+
+sobelCombined = cv2.bitwise_or(sobelX, sobelY)
+cv2.imshow("Sobel",sobelCombined)
+
+
+
+#-------------------------------------------------------------
+
+#Para el texto
+
+#Leer imagen
+img4 = cv2.cvtColor(imgCanny,cv2.COLOR_GRAY2BGR)
+img11 = cv2.resize(img4, (400,300))
+
+font_name=['HERSHEY SIMPLEX']
+
+
+fonts=[cv2.FONT_HERSHEY_SIMPLEX]
+
+
+#Características del texto
+texto = "Canny es el mejor :)"
+ubicacion = (50,100)
+tamañoLetra = 1
+colorLetra = (0,255,255)
+grosorLetra = 2
+
+#Escribir texto
+cv2.putText(img11, texto, (20,60), cv2.FONT_HERSHEY_SIMPLEX, tamañoLetra, colorLetra, grosorLetra)
+
+
+#Mostrar imagen
+cv2.imshow('imagen con texto',img11)
+
+
+
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
