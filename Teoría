@@ -1,0 +1,14 @@
+'''
+Operador de Laplace
+Laplace utiliza la diferencia de segundo orden para calcular la arista. Observando la función continua
+En el máximo o mínimo del gráfico diferencial de primer orden, se considera un borde.
+El cruce por cero entre los valores máximo y mínimo en el gráfico diferencial de segundo orden se considera una arista.
+Operador Sobel
+Soble es diferente del núcleo de convolución mencionado anteriormente en que Soble enfatiza la influencia de los píxeles adyacentes al borde en el borde. UNA
+
+El punto central f (x, y) es la consideración principal, y su peso debería ser mayor.
+
+operador sobel: El primer operador derivado, que introduce la operación promedio local, tiene un efecto de suavizado sobre el ruido, tiene una fuerte capacidad antirruido y tiene una gran cantidad de cálculo, pero la precisión de posicionamiento no es alta.
+
+operador laplaciano: Operador diferencial de segundo orden con invariancia de rotación,Fácilmente afectado por el ruido, No puede detectar la dirección del borde, generalmente no se usa directamente para detectar el borde, sino para juzgarCambios claros y oscuros. Este operador rara vez se usa para detectar bordes, pero se usa para determinar si los píxeles de borde se tratan como áreas brillantes u oscuras de la imagen.
+'''
